@@ -1,0 +1,21 @@
+version: '3'
+## SERVER ##
+services:
+  backend:
+    build: ./backend
+    environment: 
+      - BACKEND_PORT:${BACKEND_PORT}
+    ports:
+      - 9000:9000
+    volumes:
+      - ./backend/src:/backend/src
+
+## CLIENT ##
+  frontend:
+    build: ./frontend
+    ports:
+      - 8000:8000
+    volumes:
+      - ./frontend/src:/frontend/src
+    links:
+      - backend
